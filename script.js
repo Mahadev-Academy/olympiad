@@ -14,6 +14,7 @@ let currentQuestionIndex = 0;
 let previousPage = null;
 let countdownTimer = null;
 let testStartTime = 0;
+let wakeLock = null;
 
 
 function enableTestMode(){
@@ -133,9 +134,11 @@ function logout(){
   answers = {};
 
   clearInterval(timer);
-
+  disableWakeLock();
   showLogin();
-
+document
+.getElementById("examWatermark")
+?.remove();
 }
 
 function showLogin(){
@@ -546,7 +549,7 @@ ${t.testName}
 </div>
 
 <div class="today-test-status live">
-🔴 LIVE
+ ACTIVE
 </div>
 
 </div>
@@ -561,7 +564,7 @@ ${t.testId}
 
 <div class="today-message">
 
-🟢 Test Ends Today 9:00 PM
+Test Ends Today @ 9:00 PM
 
 </div>
 
@@ -1352,16 +1355,129 @@ function showInstructions(id, dur){
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
+/* ==========================
+   SCREEN WAKE LOCK
+========================== */
 
+async function enableWakeLock(){
+
+  try{
+
+    if("wakeLock" in navigator){
+
+      wakeLock =
+        await navigator.wakeLock.request("screen");
+
+      console.log("Wake Lock Enabled");
+
+      wakeLock.addEventListener(
+        "release",
+        ()=>{
+          console.log("Wake Lock Released");
+        }
+      );
+
+    }
+
+  }catch(err){
+
+    console.log(
+      "Wake Lock Error:",
+      err.message
+    );
+
+  }
+
+}
+
+async function disableWakeLock(){
+
+  try{
+
+    if(wakeLock){
+
+      await wakeLock.release();
+
+      wakeLock = null;
+
+      console.log("Wake Lock Disabled");
+
+    }
+
+  }catch(e){}
+
+}
+
+/* Screen visible hone par dobara enable */
+
+document.addEventListener(
+
+  "visibilitychange",
+
+  async ()=>{
+
+    if(
+      wakeLock === null &&
+      document.visibilityState==="visible"
+    ){
+
+      enableWakeLock();
+
+    }
+
+  }
+
+);
+function createWatermark(){
+
+const old =
+document.getElementById("examWatermark");
+
+if(old) old.remove();
+
+const layer =
+document.createElement("div");
+
+layer.id="examWatermark";
+
+layer.className="exam-watermark";
+
+const text =
+
+`MAHADEV ACADEMY
+ | ${window.studentName}
+ | ${studentId}
+ | ${window.studentMobile}`;
+
+for(let y=0;y<window.innerHeight+400;y+=170){
+
+for(let x=-150;x<window.innerWidth+300;x+=260){
+
+const item =
+document.createElement("span");
+
+item.style.left=x+"px";
+
+item.style.top=y+"px";
+
+item.innerText=text;
+
+layer.appendChild(item);
+
+}
+
+}
+
+document.body.appendChild(layer);
+
+}
 function startTest(dur){
 
   pushState();
-
   hideNavButtons();
-
   answers = {};
-
-  
+  enableWakeLock();
+  createWatermark();
 
   let html = `
 
@@ -1807,7 +1923,11 @@ async function submitTest() {
   submitting = true;
 
   clearInterval(timer);
-
+  disableWakeLock();
+ 
+document
+.getElementById("examWatermark")
+?.remove();
   const btn = document.querySelector(".premium-submit-btn");
 
   if (btn) {
@@ -3104,3 +3224,4 @@ document.addEventListener("keydown", e => {
   }
 
 });
+
