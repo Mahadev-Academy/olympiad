@@ -202,7 +202,8 @@
   background:#fff;
   border-radius:28px;
   padding:24px;
-  margin-bottom:22px;
+  margin-bottom:22px
+  scroll-margin-top:145px;;
   box-shadow:
   0 10px 30px rgba(0,0,0,.08);
 }
@@ -244,18 +245,27 @@
 }
 .premium-options{
   display:grid;
-  gap:14px;
+  gap:6px;
 }
 
 .premium-option{
+
   background:#f8f9ff;
+
   border:2px solid transparent;
-  border-radius:20px;
-  padding:18px;
+
+  border-radius:16px;
+
+  padding:10px 14px;
+
   display:flex;
-  gap:14px;
+
+  gap:10px;
+
   align-items:center;
+
   cursor:pointer;
+
   transition:.25s ease;
 }
 
@@ -1173,7 +1183,7 @@ body{
 
   position:sticky;
   top:0;
-  z-index:1000;
+  z-index:9999;
 
   display:flex;
   align-items:center;
@@ -1765,15 +1775,27 @@ button, .option{
   background:rgba(255,0,0,0.2);
 }
 .sticky-nav-panel{
-  position: sticky;
-  top: 42px;
-  z-index: 999;
-  padding: 4px 0;
-  background: rgba(244, 247, 251, 0.95);
-  border-bottom: 1px solid rgba(203, 213, 225, 0.8);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-}
-.premium-live-badge.locked{
+
+  position:sticky;
+
+  top:72px;
+
+  z-index:998;
+
+  width:100%;
+
+  background:#ffffff;
+
+  padding:8px 0;
+
+  box-sizing:border-box;
+
+  border-bottom:1px solid #e5e7eb;
+
+  box-shadow:
+      0 8px 20px rgba(15,23,42,.08);
+
+}premium-live-badge.locked{
 
 background:
 
@@ -4711,6 +4733,7 @@ white-space:nowrap;
 transform:rotate(-30deg);
 
 }
+
 </style>
 </head>
 
@@ -4750,9 +4773,6 @@ transform:rotate(-30deg);
 
 
 <script src="script.js"></script>
-
-
-
 
 
 
