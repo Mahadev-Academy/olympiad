@@ -4432,26 +4432,99 @@ font-family:'Poppins',sans-serif;
 
 .today-test-card.live-version .today-test-status{
 
-padding:9px 18px;
+display:flex;
+align-items:center;
+gap:8px;
+
+padding:0 18px;
+height:42px;
 
 border-radius:999px;
 
-background:#22C55E;
+background:linear-gradient(
+135deg,
+#0F172A,
+#1E293B
+);
 
-font-size:14px;
+border:1px solid rgba(34,197,94,.35);
 
+color:#ffffff;
+
+font-size:13px;
 font-weight:800;
-
-letter-spacing:.5px;
-
-color:#fff;
-
-white-space:nowrap;
-
-font-family:'Poppins',sans-serif;
+letter-spacing:.8px;
 
 box-shadow:
-0 6px 18px rgba(34,197,94,.35);
+0 8px 20px rgba(0,0,0,.25),
+inset 0 1px 0 rgba(255,255,255,.08);
+
+position:relative;
+overflow:hidden;
+
+}
+.today-test-card.live-version .today-test-status::before{
+
+content:"";
+
+width:12px;
+height:12px;
+
+border-radius:50%;
+
+background:#22C55E;
+
+box-shadow:
+0 0 8px #22C55E,
+0 0 18px #22C55E;
+
+animation:gamePulse .9s infinite;
+
+}
+
+.today-test-card.live-version .today-test-status::after{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:60%;
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.35),
+transparent
+);
+
+animation:shineMove 2.5s linear infinite;
+
+}
+@keyframes gamePulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.6);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+@keyframes shineMove{
+
+100%{
+left:150%;
+}
 
 }
 
@@ -4472,38 +4545,23 @@ margin:18px 0;
 .today-test-card.live-version .today-countdown{
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 
-min-height:72px;
+min-height:45px;
+padding:0 5px;
 
-padding:0 14px;
-
-background:rgba(255,255,255,.03);
-
-border-radius:14px;
-
-font-size:44px;
+font-size:28px;
 
 font-weight:900;
 
-letter-spacing:0;
+letter-spacing:-0.5px;
 
-line-height:1;
+border-radius:8px;
 
-color:#FFC53A;
+margin-bottom:10px;
 
-margin-bottom:18px;
-
-overflow:hidden;
-
-white-space:nowrap;
-
-text-overflow:ellipsis;
-
-font-family:'Poppins',sans-serif;
+background:rgba(255,255,255,.03);
 
 }
 
@@ -4653,7 +4711,13 @@ background:linear-gradient(
 <div id="app" class="wrapper"></div>
 
 
+
+
 <script src="script.js"></script>
+
+
+
+
 
 
 
