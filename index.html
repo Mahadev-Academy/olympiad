@@ -4674,6 +4674,43 @@ background:linear-gradient(
 );
 
 }
+.exam-watermark{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:9998;
+
+overflow:hidden;
+
+opacity:.06;
+
+user-select:none;
+
+}
+
+.exam-watermark span{
+
+position:absolute;
+
+font-size:18px;
+
+font-weight:800;
+
+color:#2563EB;
+
+white-space:nowrap;
+
+transform:rotate(-30deg);
+
+}
 </style>
 </head>
 
@@ -4712,10 +4749,7 @@ background:linear-gradient(
 
 
 
-
 <script src="script.js"></script>
-
-
 
 
 
